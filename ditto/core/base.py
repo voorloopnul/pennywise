@@ -1,8 +1,5 @@
 import os
-
 import docker
-
-from ditto.core.results import extract_result_from_container_into_host
 
 
 class BaseTool:
@@ -16,27 +13,25 @@ class BaseTool:
         self.container = None
 
     def run(self, cmd, current_dir):
-        print("build-cmd")
         self.build_cmd(cmd)
-        print("build-volume")
         self.build_volumes(current_dir)
-        print("run-container")
         self.run_container()
-        print("patch-logs")
-        self.patch_logs()
-        print("handle-output")
-        self.handle_output()
+        self.patch_logs(current_dir)
 
     def build_cmd(self, cmd):
         for i in cmd:
             if i.startswith("/"):
-                self.new_cmd.append("/host" + i)
+                self.new_cmd.append("/host" + os.path.abspath(i))
+            elif i.startswith("./"):
+                self.new_cmd.append("/host" + os.path.abspath(i))
+            elif i.startswith("../"):
+                self.new_cmd.append("/host" + os.path.abspath(i))
             else:
                 self.new_cmd.append(i)
 
     def build_volumes(self, current_dir):
         self.volumes = {
-            '/': {'bind': '/host', 'mode': 'ro'},
+            '/': {'bind': '/host', 'mode': 'rw'},
             current_dir: {'bind': '/data', 'mode': 'rw'},
         }
 
@@ -50,10 +45,9 @@ class BaseTool:
             user="1000:1000"
         )
 
-    def patch_logs(self):
+    def patch_logs(self, current_dir):
         for line in self.container.logs(stream=True):
-            print(line.strip().decode().replace("/data", "/fake/path"))
-
-    def handle_output(self):
-        #extract_result_from_container_into_host(self.container.id, ".")
-        pass
+            line = line.strip().decode()
+            # line = line.replace("/data", current_dir)
+            # line = line.replace("/host", "")
+            print(line)
