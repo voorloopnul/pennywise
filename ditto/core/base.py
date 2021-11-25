@@ -1,3 +1,5 @@
+import os
+
 import docker
 
 from ditto.core.results import extract_result_from_container_into_host
@@ -17,7 +19,7 @@ class BaseTool:
         print("build-cmd")
         self.build_cmd(cmd)
         print("build-volume")
-        self.build_volumes()
+        self.build_volumes(current_dir)
         print("run-container")
         self.run_container()
         print("patch-logs")
@@ -32,9 +34,10 @@ class BaseTool:
             else:
                 self.new_cmd.append(i)
 
-    def build_volumes(self):
+    def build_volumes(self, current_dir):
         self.volumes = {
             '/': {'bind': '/host', 'mode': 'ro'},
+            current_dir: {'bind': '/data', 'mode': 'rw'},
         }
 
     def run_container(self):
@@ -44,6 +47,7 @@ class BaseTool:
             f"{self.prefix_cmd} {new_cmd}",
             detach=True,
             volumes=self.volumes,
+            user="1000:1000"
         )
 
     def patch_logs(self):
@@ -51,4 +55,5 @@ class BaseTool:
             print(line.strip().decode().replace("/data", "/fake/path"))
 
     def handle_output(self):
-        extract_result_from_container_into_host(self.container.id, ".")
+        #extract_result_from_container_into_host(self.container.id, ".")
+        pass
