@@ -2,13 +2,13 @@
 """Naval Fate.
 
 Usage:
-  ditto fastANI
-  ditto prokka
-  ditto quast
-  ditto spades
-  ditto trimmomatic
-  ditto (-h | --help)
-  ditto --version
+  it fastANI
+  it prokka
+  it quast
+  it spades
+  it trimmomatic
+  it (-h | --help)
+  it --version
 
 Options:
   -h --help     Show this screen.
@@ -17,11 +17,11 @@ Options:
 import os
 import sys
 from docopt import docopt
-from ditto.tools.q import Quast
-from ditto.tools.f import FastANI
-from ditto.tools.p import Prokka
-from ditto.tools.s import Spades
-from ditto.tools.t import Trimmomatic
+from it.tools.q import Quast
+from it.tools.f import FastANI
+from it.tools.p import Prokka
+from it.tools.s import Spades
+from it.tools.t import Trimmomatic
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, argv=sys.argv[1:2], version='Ditto v0.0.1')
