@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
       name='pennywise',
-      version='0.0.9',
+      version='0.0.10',
       description='pennywise - A docker based bioinformatics shape shifting tool.',
       long_description=long_description,
       long_description_content_type="text/markdown",
