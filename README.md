@@ -22,15 +22,17 @@ You must have docker and python3 available at your system.
 
 ### Example 2: Running spades
 
-    pennywise spades -1 r1_p.fq -2 r2_p.fq -o assembly -meta 
+```shell
+pennywise spades -1 r1_p.fq -2 r2_p.fq -o assembly -meta 
+```
     
 ### First time using a tool
 If it's the first time you are running a particular command, pennywise will need to pull the image before it actually 
 runs the tool. Most images will range from 200MB to 2GB, and will get installed in less than 10 minutes providing you
 have a good internet connection.
 
-```commandline
-pascal@dione:~/Workspace/pennywise$ ./pennywise quast genome.fa
+```shell
+pascal@dione:~/Sandbox/$ pennywise quast genome.fa
 - It looks like it's your first time running this command!
 - pennywise will download the image (staphb/quast:latest) so it can shapeshift
 - This can take some time...
