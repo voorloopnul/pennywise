@@ -36,6 +36,14 @@ class BaseTool:
         }
 
     def run_container(self):
+        try:
+            self.client.images.get(self.image)
+        except docker.errors.ImageNotFound:
+            print(f"- It looks like it's your first time running this command!")
+            print(f"- pennywise will download the image ({self.image}) so it can shapeshift")
+            print(f"- This can take some time...")
+            self.client.images.pull(self.image)
+
         new_cmd = ' '.join(self.new_cmd)
         self.container = self.client.containers.run(
             self.image,

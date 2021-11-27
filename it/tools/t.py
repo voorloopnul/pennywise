@@ -1,4 +1,4 @@
-from ditto.core.base import BaseTool
+from it.core.base import BaseTool
 
 
 class Trimmomatic(BaseTool):
