@@ -16,14 +16,23 @@ You must have docker and python3 available at your system.
 
     pennywise <tool> <regular-tool-options> 
 
-### Running trimmomatic
+### Example 1: Running trimmomatic
 
     pennywise trimmomatic PE r1.fq r2.fq r1_p.fq r1_u.fq r2_p.fq r2_u.fq SLIDINGWINDOW:4:20 MINLEN:100
 
-### Running spades
+### Example 2: Running spades
 
     pennywise spades -1 r1_p.fq -2 r2_p.fq -o assembly -meta 
     
+### First time using a tool
+
+```shell
+pascal@dione:~/Workspace/pennywise$ ./pennywise quast genome.fa
+- It looks like it's your first time running this command!
+- pennywise will download the image (staphb/quast:latest) so it can shapeshift
+- This can take some time...
+```
+
 
 ## Tools Available
 
