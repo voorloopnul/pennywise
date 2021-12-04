@@ -1,0 +1,19 @@
+[fastANI]
+image="staphb/fastani:latest"
+prefix_cmd="fastANI"
+
+[quast]
+image = "staphb/quast:latest"
+prefix_cmd = "quast.py"
+
+[prokka]
+image = "staphb/prokka:latest"
+prefix_cmd = "prokka"
+
+[spades]
+image = "staphb/spades:latest"
+prefix_cmd = "spades.py"
+
+[trimmomatic]
+image = "staphb/trimmomatic:latest"
+prefix_cmd = "trimmomatic"

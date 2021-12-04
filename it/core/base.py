@@ -2,11 +2,12 @@ import os
 import docker
 
 
-class BaseTool:
-    image = None
-    prefix_cmd = None
+class Tool:
 
-    def __init__(self):
+    def __init__(self, image, prefix_cmd):
+        self.image = image
+        self.prefix_cmd = prefix_cmd
+
         self.client = docker.from_env()
         self.new_cmd = []
         self.volumes = None
