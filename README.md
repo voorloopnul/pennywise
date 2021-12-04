@@ -12,6 +12,10 @@ You must have docker and python3 available at your system.
 
 ## Usage
 
+### List available tools
+
+    pennywise list 
+
 ### Basic usage
 
     pennywise <tool> <regular-tool-options> 
@@ -41,7 +45,8 @@ pascal@dione:~/Sandbox/$ pennywise quast genome.fa
 
 ## Tools Available
 
- - Trimmomatic
- - Spades
  - FastANI
+ - Prokka
  - Quast
+ - Spades
+ - Trimmomatic
