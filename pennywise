@@ -3,20 +3,33 @@ import os
 import sys
 
 import toml
-from it.core.base import Tool
+from it.base import Tool
+from it.core import load_tools, tool_list_exists
 
 if __name__ == '__main__':
-    cmd_database = toml.load("pennywise.toml")
+    available_tools = toml.load("pennywise.toml")
     cmd = sys.argv[1]
 
-    if cmd == "--help":
-        print("Show help")
+    if not tool_list_exists():
+        load_tools()
+
+    if cmd == "list":
+        for tool, value in available_tools.items():
+            help_text = value.get("help", "No help provided")
+            print(f"{tool} - {help_text}")
+
         sys.exit(0)
 
-    elif cmd in cmd_database.keys():
+    elif cmd == "install":
+        print("Install specific tool")
+
+    elif cmd == "source":
+        load_tools()
+
+    elif cmd in available_tools.keys():
         current_dir = os.getcwd()
-        image = cmd_database[cmd]["image"]
-        prefix_cmd = cmd_database[cmd]["prefix_cmd"]
+        image = available_tools[cmd]["image"]
+        prefix_cmd = available_tools[cmd]["prefix_cmd"]
 
         tool = Tool(image, prefix_cmd)
         tool.run(sys.argv[2:], current_dir)
