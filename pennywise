@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     if cmd == "list":
         for tool, value in available_tools.items():
-            help_text = value.get("help", "No help provided")
+            help_text = value.get("description", "No help provided")
             print(f"{tool} - {help_text}")
 
         sys.exit(0)

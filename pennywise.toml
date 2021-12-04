@@ -1,6 +1,7 @@
 [fastANI]
 image="staphb/fastani:latest"
 prefix_cmd="fastANI"
+description="fastANI is a fast alignment-free implementation for computing whole-genome Average Nucleotide Identity (ANI) between genomes"
 
 [quast]
 image = "staphb/quast:latest"
