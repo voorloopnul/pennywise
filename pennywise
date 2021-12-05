@@ -8,10 +8,10 @@ from it.core import load_tools, tool_list_exists, config_file
 
 help_text="""Pennywise 0.0.1
 
-./pennywise list                     - List available tools
-./pennywise <tool> <tool-arguments>  - Run the tool you are most afraid to install.
-./pennywise install <tool>           - Install <tool>
-./pennywise source <github-user>     - Load tool list from <github-user>. If user is not provided loads it from original repository.
+ ./pennywise list                     - List available tools
+ ./pennywise <tool> <tool-arguments>  - Run the tool you are most afraid to install.
+ ./pennywise install <tool>           - Install <tool>
+ ./pennywise source <github-user>     - Load tool list from <github-user>. If user is not provided loads it from original repository.
 """
 if __name__ == '__main__':
     if len(sys.argv) == 1:
