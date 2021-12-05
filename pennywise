@@ -9,6 +9,7 @@ from it.core import load_tools, tool_list_exists
 if __name__ == '__main__':
     available_tools = toml.load("pennywise.toml")
     cmd = sys.argv[1]
+    args = sys.argv[2:]
 
     if not tool_list_exists():
         load_tools()
@@ -18,13 +19,19 @@ if __name__ == '__main__':
             help_text = value.get("description", "No help provided")
             print(f"{tool} - {help_text}")
 
-        sys.exit(0)
-
     elif cmd == "install":
-        print("Install specific tool")
+        if args:
+            tool = args[0]
+            if tool in available_tools.keys():
+                pass
+            else:
+                print(f"Tool <{tool}> not in pennywise.toml")
+        else:
+            print("Which tool you want to install?")
 
     elif cmd == "source":
-        load_tools()
+        user = args[0] if args else "voorloopnul"
+        load_tools(user, "main")
 
     elif cmd in available_tools.keys():
         current_dir = os.getcwd()
@@ -32,7 +39,7 @@ if __name__ == '__main__':
         prefix_cmd = available_tools[cmd]["prefix_cmd"]
 
         tool = Tool(image, prefix_cmd)
-        tool.run(sys.argv[2:], current_dir)
+        tool.run(args, current_dir)
 
     else:
-        print("Pennywise can't change into this tool.")
+        print("Pennywise doesn't recognize this tool.")
