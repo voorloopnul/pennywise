@@ -12,7 +12,7 @@ if __name__ == '__main__':
     args = sys.argv[2:]
 
     if not tool_list_exists():
-        load_tools()
+        load_tools("voorloopnul", "main")
 
     if cmd == "list":
         for tool, value in available_tools.items():
