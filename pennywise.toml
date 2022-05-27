@@ -18,3 +18,8 @@ prefix_cmd = "spades.py"
 [trimmomatic]
 image = "staphb/trimmomatic:latest"
 prefix_cmd = "trimmomatic"
+
+[kraken2]
+image = "staphb/kraken2:2.1.2-no-db"
+prefix_cmd = "kraken2"
+description = "Taxonomic sequence classifier."
